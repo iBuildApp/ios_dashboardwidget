@@ -1,0 +1,42 @@
+//
+//  LabelViewModel.swift
+//  AppBuilder
+//
+//  Created by Vitaly Potlov on 06/04/2019.
+//  Copyright © 2019 iBuildApp. All rights reserved.
+//
+
+import Foundation
+import IBACore
+
+class LabelViewModel {
+    
+    private var item: LabelModel
+    private var label = UILabel()
+
+    init(_ label: LabelModel) {
+        self.item = label
+        configureLabel()
+    }
+    
+    private func configureLabel() {
+        label = UILabel(frame: item.getRect())
+        label.text = item.data.title
+        
+        if let font = item.data.getFont() {
+            label.font = font
+        }
+        
+        if let alignment = item.data.align {
+            label.textAlignment = alignment.native()
+        }
+        
+        if let color = item.data.color?.getColor() {
+            label.textColor = color
+        }
+    }
+    
+    var getLabel: UILabel {
+        return label
+    }
+}
