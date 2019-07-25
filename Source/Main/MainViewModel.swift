@@ -15,7 +15,6 @@ class MainViewModel {
     private var labels: [LabelViewModel]?
     private var images: [ImageViewModel]?
     
-    
     func setupButtons(from items: [ButtonModel]) {
         buttons = items.map { return ButtonViewModel($0) }
     }
