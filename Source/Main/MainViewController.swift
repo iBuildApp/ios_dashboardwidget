@@ -62,7 +62,7 @@ class MainViewController: BaseViewController {
             backgroundImageView.backgroundColor = UIColor(withHexString: hexString)
         }
         
-        guard let imageUrl = appSettings.design?.backimagex else { return }
+        guard let imageUrl = appSettings.design?.backimagex ?? appSettings.design?.backimage5 ?? appSettings.design?.backimage else { return }
         
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.kf.setImage(with: URL(string: imageUrl), options: [.transition(.fade(0.2))])
