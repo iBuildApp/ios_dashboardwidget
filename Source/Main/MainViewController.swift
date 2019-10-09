@@ -30,6 +30,8 @@ class MainViewController: BaseViewController {
         self.init()
         self.type = type
         self.data = data
+        
+        self.showAd = false
     }
 
     override public func viewDidLoad() {
