@@ -15,16 +15,16 @@ class MainViewModel {
     private var labels: [LabelViewModel]?
     private var images: [ImageViewModel]?
     
-    func setupButtons(from items: [ButtonModel]) {
-        buttons = items.map { return ButtonViewModel($0) }
+    func setupButtons(from items: [ButtonModel], in size: CGSize? = nil) {
+        buttons = items.map { return ButtonViewModel($0, in: size) }
     }
     
-    func setupLabels(from items: [LabelModel]) {
-        labels = items.map { return LabelViewModel($0) }
+    func setupLabels(from items: [LabelModel], in size: CGSize? = nil) {
+        labels = items.map { return LabelViewModel($0, in: size) }
     }
     
-    func setupImages(from items: [ImageModel]) {
-        images = items.map { ImageViewModel($0) }
+    func setupImages(from items: [ImageModel], in size: CGSize? = nil) {
+        images = items.map { ImageViewModel($0, in: size) }
     }
     
     func getButtons() -> [ButtonViewModel] {

@@ -15,13 +15,13 @@ class ButtonViewModel {
     private var item: ButtonModel!
     private var button = UIButton()
     
-    init(_ button: ButtonModel) {
+    init(_ button: ButtonModel, in size: CGSize? = nil) {
         self.item = button
-        configureButton()
+        configureButton(size)
     }
     
-    private func configureButton() {
-        button = UIButton(frame: item.getRect())
+    private func configureButton(_ size: CGSize? = nil) {
+        button = UIButton(frame: item.getRect(size))
         if let label = item.label {
             button.setTitle(label, for: .normal)
             

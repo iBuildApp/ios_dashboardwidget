@@ -14,13 +14,13 @@ class ImageViewModel {
     private var item: ImageModel
     private var imageView = UIImageView()
     
-    init(_ imageModel: ImageModel) {
+    init(_ imageModel: ImageModel, in size: CGSize? = nil) {
         self.item = imageModel
-        configure()
+        configure(size)
     }
     
-    private func configure() {
-        imageView = UIImageView(frame: item.getRect())
+    private func configure(_ size: CGSize? = nil) {
+        imageView = UIImageView(frame: item.getRect(size))
         
         if let urlString = item.data.url, let url = URL(string: urlString) {
             imageView.kf.setImage(with: url)

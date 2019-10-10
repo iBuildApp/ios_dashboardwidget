@@ -14,13 +14,13 @@ class LabelViewModel {
     private var item: LabelModel
     private var label = UILabel()
 
-    init(_ label: LabelModel) {
+    init(_ label: LabelModel, in size: CGSize? = nil) {
         self.item = label
-        configureLabel()
+        configureLabel(size)
     }
     
-    private func configureLabel() {
-        label = UILabel(frame: item.getRect())
+    private func configureLabel(_ size: CGSize? = nil) {
+        label = UILabel(frame: item.getRect(size))
         label.text = item.data.title
         
         if let font = item.data.getFont() {

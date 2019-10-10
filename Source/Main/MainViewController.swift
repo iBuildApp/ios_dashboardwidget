@@ -41,11 +41,16 @@ class MainViewController: BaseViewController {
         
         view.sv(backgroundImageView, contentView)
         
+        var size = self.view.frame.size
+        if let c = tabBarController?.viewControllers, c.count > 1 {
+            size.height -= tabBarController?.tabBar.bounds.size.height ?? 0
+        }
+        
         backgroundImageSetup()
         
-        buttonsSetup()
-        labelsSetup()
-        imagesSetup()
+        buttonsSetup(in: size)
+        labelsSetup(in: size)
+        imagesSetup(in: size)
         
         if let ids = data?.buttons?.map({ item -> String in return item.widgetId }) {
             AppManager.manager.preloadWidgets(ids)
@@ -70,21 +75,21 @@ class MainViewController: BaseViewController {
         backgroundImageView.kf.setImage(with: URL(string: imageUrl), options: [.transition(.fade(0.2))])
     }
     
-    private func buttonsSetup() {
+    private func buttonsSetup(in size: CGSize? = nil) {
         guard let buttons = data?.buttons else { return }
-        viewModel.setupButtons(from: buttons)
+        viewModel.setupButtons(from: buttons, in: size)
         viewModel.getButtons().forEach { self.contentView.addSubview( $0.getButton ) }
     }
     
-    private func labelsSetup() {
+    private func labelsSetup(in size: CGSize? = nil) {
         guard let labels = data?.labels else { return }
-        viewModel.setupLabels(from: labels)
+        viewModel.setupLabels(from: labels, in: size)
         viewModel.getLabels().forEach { self.contentView.addSubview( $0.getLabel ) }
     }
     
-    private func imagesSetup() {
+    private func imagesSetup(in size: CGSize? = nil) {
         guard let images = data?.images else { return }
-        viewModel.setupImages(from: images)
+        viewModel.setupImages(from: images, in: size)
         viewModel.getImages().forEach { self.contentView.addSubview( $0.getImageView ) }
     }
 }
